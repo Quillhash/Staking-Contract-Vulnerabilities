@@ -136,7 +136,7 @@ Which impacts incorrect reward calculations due to inflated totalStaked value.
 ### Description:
 In unstake() the intentional logic for unstaking is to calculate 50% of the amount staked amount and transfer it to the user. But while transferring it transfers the amount + reward. Here amount wasn't actually staked by the operator (i.e it wasn't transferred to the staking contract while staking). But while sending it is getting sent. which will create problem as the users will get more amount. i.e reward and the amount also ( which was never transferred while staking).
 
-## Issue 4: copying and poping elements can create a confusion while unstaking with index
+## Issue 5: copying and poping elements can create a confusion while unstaking with index
 ``` solidity
 /// @dev Allow user to unstake their RITE after staking duration
     /// @param _index The index of the stake
@@ -185,7 +185,7 @@ after unstaking it is in this sequence:
 In this case, the user can get confused if he assumed that the stake of any month is going to be at the specific index because that got staked (pushed to array) in the same order of increasing month.
 
 
-## Issue 5: The contract increases the global rewardsPerSecond each time a pool starts, leading to more reward distributions. 
+## Issue 6: The contract increases the global rewardsPerSecond each time a pool starts, leading to more reward distributions. 
 
 ```Solidity
  /**
@@ -255,7 +255,7 @@ This could allow protocol to distribute significantly more rewards than intended
 
 
 
-## Issue 6: The contract doesn't properly handle historical reward rate changes when calculating rewards. 
+## Issue 7: The contract doesn't properly handle historical reward rate changes when calculating rewards. 
 
 ```Solidity
 // Add helper function to calculate rewards across rate changes
